@@ -1,6 +1,20 @@
 import React, { Component } from "react";
 
 class Toolbar extends Component {
+
+  evalBulkSelectStyle = () => {
+    switch (this.props.bulkSelectState) {
+      case "none":
+        return 'fa-square-o'
+      case "all":
+        return 'fa-check-square-o'
+      case "some":
+        return 'fa-minus-square-o'
+      default: 
+        return ''
+    }
+  }
+
   render() {
     return (
       <div class="row toolbar">
@@ -10,8 +24,8 @@ class Toolbar extends Component {
             unread messages
           </p>
 
-          <button class="btn btn-default">
-            <i class="fa fa-check-square-o"></i>
+          <button class="btn btn-default" onClick={(event) => this.props.bulkSelectMessage(event)}>
+            <i class={`fa ${this.evalBulkSelectStyle()}`}></i>
           </button>
 
           <button class="btn btn-default">Mark As Read</button>
