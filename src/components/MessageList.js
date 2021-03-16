@@ -1,15 +1,21 @@
-import React, { Component } from 'react';
-import Message from "./Message";
+import React, { Component } from 'react'
+import Message from './Message'
+import PropTypes from 'prop-types'
 
 class MassageList extends Component {
-    
-    render () {
-        return (
+  render () {
+    return (
             <div>
             {this.props.messages.map((message) => <Message key={message.id} id={message.id} subject={message.subject} selected={message.selected} read={message.read} starred={message.starred} labels={message.labels} toggleStarFlag={this.props.toggleStarFlag} toggleSelectedFlag={this.props.toggleSelectedFlag}/>)}
             </div>
-        )
-    }
+    )
+  }
 }
 
-export default MassageList;
+MassageList.propTypes = {
+  messages: PropTypes.array,
+  toggleStarFlag: PropTypes.func,
+  toggleSelectedFlag: PropTypes.func
+}
+
+export default MassageList
