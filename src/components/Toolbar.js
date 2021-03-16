@@ -18,11 +18,11 @@ class Toolbar extends Component {
   evalEnableState = () => {
     switch (this.props.bulkSelectState) {
       case 'none':
-        return 'true'
+        return true
       case 'all':
-        return ''
+        return false
       case 'some':
-        return ''
+        return false
       default:
         return ''
     }
@@ -41,25 +41,25 @@ class Toolbar extends Component {
             <i className={`fa ${this.evalBulkSelectStyle()}`}></i>
           </button>
 
-          <button className="btn btn-default" disabled={`${this.evalEnableState()}`} onClick={this.props.markSelectedAsRead}>Mark As Read</button>
+          <button className="btn btn-default" disabled={this.evalEnableState()} onClick={this.props.markSelectedAsRead}>Mark As Read</button>
 
-          <button className="btn btn-default" disabled={`${this.evalEnableState()}`} onClick={this.props.markSelectedAsUnread}>Mark As Unread</button>
+          <button className="btn btn-default" disabled={this.evalEnableState()} onClick={this.props.markSelectedAsUnread}>Mark As Unread</button>
 
-          <select className="form-control label-select" disabled={`${this.evalEnableState()}`} onChange={(event) => this.props.addSelectedLabel(event)}>
+          <select className="form-control label-select" disabled={this.evalEnableState()} onChange={(event) => this.props.addSelectedLabel(event)}>
             <option>Apply label</option>
             <option value="dev">dev</option>
             <option value="personal">personal</option>
             <option value="gschool">gschool</option>
           </select>
 
-          <select className="form-control label-select" disabled={`${this.evalEnableState()}`} onChange={(event) => this.props.removeSelectedLabel(event)}>
+          <select className="form-control label-select" disabled={this.evalEnableState()} onChange={(event) => this.props.removeSelectedLabel(event)}>
             <option>Remove label</option>
             <option value="dev">dev</option>
             <option value="personal">personal</option>
             <option value="gschool">gschool</option>
           </select>
 
-          <button className="btn btn-default" disabled={`${this.evalEnableState()}`} onClick={this.props.deleteSelectedMessages}>
+          <button className="btn btn-default" disabled={this.evalEnableState()} onClick={this.props.deleteSelectedMessages}>
             <i className="fa fa-trash-o"></i>
           </button>
         </div>
