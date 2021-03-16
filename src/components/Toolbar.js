@@ -37,7 +37,7 @@ class Toolbar extends Component {
             unread messages
           </p>
 
-          <button className="btn btn-default" onClick={(event) => this.props.bulkSelectMessage(event)}>
+          <button className="btn btn-default" onClick={(event) => this.props.bulkSelectMessage(event)} disabled={this.evalEnableState()}>
             <i className={`fa ${this.evalBulkSelectStyle()}`}></i>
           </button>
 
