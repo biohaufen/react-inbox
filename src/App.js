@@ -1,13 +1,15 @@
 import './App.css'
 import Toolbar from './components/Toolbar'
 import MessageList from './components/MessageList'
+import ComposeForm from './components/ComposeForm'
 import React, { Component } from 'react'
 
 class App extends Component {
   state = {
     messages: [],
     bulkSelectState: 'some',
-    totalUnreadMessageCount: 0
+    totalUnreadMessageCount: 0,
+    showComposeForm: false
   }
 
   async componentDidMount () {
@@ -139,6 +141,36 @@ class App extends Component {
     this.patchMessages(body)
   }
 
+  toggleComposeForm = () => {
+    this.setState({ showComposeForm: !this.state.showComposeForm })
+  }
+
+  addMessage = (messageSubject, messageBody) => {
+    const body = {
+      subject: messageSubject,
+      body: messageBody,
+      read: false,
+      starred: false,
+      labels: []
+    }
+    fetch('http://localhost:8082/api/messages', {
+      method: 'POST',
+      body: JSON.stringify(body),
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json'
+      }
+    }).then(async (response) => {
+      if (response.ok) {
+        const updatedList = await this.fetchMessages()
+        this.setState({ messages: updatedList })
+        this.countUnreadMessages()
+      } else {
+        this.handleFetchError(response)
+      }
+    })
+  }
+
   render () {
     return (
       <div className="App">
@@ -149,7 +181,9 @@ class App extends Component {
           deleteSelectedMessages={this.deleteSelectedMessages}
           changeReadStatus={this.changeReadStatus}
           changeLabelOfMessages={this.changeLabelOfMessages}
+          toggleComposeForm={this.toggleComposeForm}
         />
+        {this.state.showComposeForm ? <ComposeForm addMessage={this.addMessage}/> : ''}
         <MessageList
           messages={this.state.messages}
           toggleStarFlag={this.toggleStarFlag}

@@ -37,6 +37,10 @@ class Toolbar extends Component {
             unread messages
           </p>
 
+          <button className="btn btn-danger" onClick={this.props.toggleComposeForm}>
+            <i className="fa fa-plus"></i>
+          </button>
+
           <button className="btn btn-default" onClick={(event) => this.props.bulkSelectMessage(event)} disabled={this.evalEnableState()}>
             <i className={`fa ${this.evalBulkSelectStyle()}`}></i>
           </button>
@@ -74,6 +78,7 @@ Toolbar.propTypes = {
   changeReadStatus: PropTypes.func,
   deleteSelectedMessages: PropTypes.func,
   changeLabelOfMessages: PropTypes.func,
+  toggleComposeForm: PropTypes.func,
   totalUnreadMessageCount: PropTypes.number
 }
 
