@@ -41,18 +41,18 @@ class Toolbar extends Component {
             <i className={`fa ${this.evalBulkSelectStyle()}`}></i>
           </button>
 
-          <button className="btn btn-default" disabled={this.evalEnableState()} onClick={this.props.markSelectedAsRead}>Mark As Read</button>
+          <button className="btn btn-default" disabled={this.evalEnableState()} onClick={() => this.props.changeReadStatus(true)}>Mark As Read</button>
 
-          <button className="btn btn-default" disabled={this.evalEnableState()} onClick={this.props.markSelectedAsUnread}>Mark As Unread</button>
+          <button className="btn btn-default" disabled={this.evalEnableState()} onClick={() => this.props.changeReadStatus(false)}>Mark As Unread</button>
 
-          <select className="form-control label-select" disabled={this.evalEnableState()} onChange={(event) => this.props.addSelectedLabel(event)}>
+          <select className="form-control label-select" disabled={this.evalEnableState()} onChange={(event) => this.props.changeLabelOfMessages(event, 'addLabel')}>
             <option>Apply label</option>
             <option value="dev">dev</option>
             <option value="personal">personal</option>
             <option value="gschool">gschool</option>
           </select>
 
-          <select className="form-control label-select" disabled={this.evalEnableState()} onChange={(event) => this.props.removeSelectedLabel(event)}>
+          <select className="form-control label-select" disabled={this.evalEnableState()} onChange={(event) => this.props.changeLabelOfMessages(event, 'removeLabel')}>
             <option>Remove label</option>
             <option value="dev">dev</option>
             <option value="personal">personal</option>
@@ -71,11 +71,9 @@ class Toolbar extends Component {
 Toolbar.propTypes = {
   bulkSelectState: PropTypes.string,
   bulkSelectMessage: PropTypes.func,
-  markSelectedAsRead: PropTypes.func,
-  markSelectedAsUnread: PropTypes.func,
+  changeReadStatus: PropTypes.func,
   deleteSelectedMessages: PropTypes.func,
-  addSelectedLabel: PropTypes.func,
-  removeSelectedLabel: PropTypes.func,
+  changeLabelOfMessages: PropTypes.func,
   totalUnreadMessageCount: PropTypes.number
 }
 
