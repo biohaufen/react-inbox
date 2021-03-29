@@ -12,9 +12,11 @@ class App extends Component {
     showComposeForm: false
   }
 
-  async componentDidMount () {
-    await this.fetchMessages().then(messages => this.setState({ messages: messages }))
-    this.countUnreadMessages()
+  componentDidMount () {
+    this.fetchMessages().then(messages => {
+      this.setState({ messages: messages, bulkSelectState: this.checkBulkState() })
+      this.countUnreadMessages()
+    })
   }
 
   handleFetchError = (response) => {
@@ -57,7 +59,6 @@ class App extends Component {
 
   toggleStarFlag = (messageId) => {
     const body = {
-      // its important to send over an array, since the api uses findAll, eventhough stars can only be applied once
       messageIds: [messageId],
       command: 'star'
     }
