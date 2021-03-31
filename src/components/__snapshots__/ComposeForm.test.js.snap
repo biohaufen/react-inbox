@@ -1,0 +1,73 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders the same way every time 1`] = `
+<form
+  className="form-horizontal well"
+>
+  <div
+    className="form-group"
+  >
+    <div
+      className="col-sm-8 col-sm-offset-2"
+    >
+      <h4>
+        Compose Message
+      </h4>
+    </div>
+  </div>
+  <div
+    className="form-group"
+  >
+    <label
+      className="col-sm-2 control-label"
+      htmlFor="subject"
+    >
+      Subject
+    </label>
+    <div
+      className="col-sm-8"
+    >
+      <input
+        className="form-control"
+        id="subject"
+        name="subject"
+        placeholder="Enter a subject"
+        type="text"
+      />
+    </div>
+  </div>
+  <div
+    className="form-group"
+  >
+    <label
+      className="col-sm-2 control-label"
+      htmlFor="body"
+    >
+      Body
+    </label>
+    <div
+      className="col-sm-8"
+    >
+      <textarea
+        className="form-control"
+        id="body"
+        name="body"
+      />
+    </div>
+  </div>
+  <div
+    className="form-group"
+  >
+    <div
+      className="col-sm-8 col-sm-offset-2"
+    >
+      <input
+        className="btn btn-primary"
+        onClick={[Function]}
+        type="submit"
+        value="Send"
+      />
+    </div>
+  </div>
+</form>
+`;
